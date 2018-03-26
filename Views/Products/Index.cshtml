@@ -1,0 +1,29 @@
+﻿@model List<webshop.Models.ProductsViewModel>
+
+@{
+
+ViewData["Title"] = "Products";
+
+}
+
+<!--<div class="products-container">-->
+
+@foreach(var product in Model)
+{
+    <!--<div class="product">-->
+    <span style="white-space: nowrap">
+    <h3><a class="bold" href="/products/get/@(product.Id)">@(product.Brand)
+    <span class="model">@(product.Model)</span>
+    </a></h3>
+    </span>
+    <img class="thumbnail" src="/images/products/@(product.Image)" alt="image of product">
+    <form action="/cart/addtocart/@(product.Id)" method="post">
+    <p class="price">Price: $@(product.Price)</p>
+    <input type="submit" value="Add to Cart" />
+    </form>
+    <br/>
+    <br/>
+   <!-- </div>-->
+}
+
+<!--</div>-->

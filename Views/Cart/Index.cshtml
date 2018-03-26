@@ -1,0 +1,25 @@
+﻿@model List<webshop.Models.CartItemModel>
+
+@{
+    ViewData["Title"] = "Cart";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>This is where you can see everything you have put in your cart!</p>
+
+<!--<div class="products-container">-->
+
+@foreach(var cart in Model)
+{
+
+    <p>@(cart.Id)</p>
+    <p>@(cart.ProductId)</p>
+    <p>@(cart.CartId)</p>
+    <p>@(cart.Quantity)</p>
+    <p>@(cart.DateCreated)</p>
+    <p>@(cart.Image)</p>
+
+}
+
+<!--</div>-->

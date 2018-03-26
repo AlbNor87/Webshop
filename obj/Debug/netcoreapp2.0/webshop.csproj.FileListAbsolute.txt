@@ -1,0 +1,11 @@
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/bin/Debug/netcoreapp2.0/webshop.deps.json
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/bin/Debug/netcoreapp2.0/webshop.runtimeconfig.json
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/bin/Debug/netcoreapp2.0/webshop.runtimeconfig.dev.json
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/bin/Debug/netcoreapp2.0/webshop.dll
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/bin/Debug/netcoreapp2.0/webshop.pdb
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/obj/Debug/netcoreapp2.0/webshop.csprojResolveAssemblyReference.cache
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/obj/Debug/netcoreapp2.0/webshop.csproj.CoreCompileInputs.cache
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/obj/Debug/netcoreapp2.0/webshop.AssemblyInfoInputs.cache
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/obj/Debug/netcoreapp2.0/webshop.AssemblyInfo.cs
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/obj/Debug/netcoreapp2.0/webshop.dll
+/Users/albertnorberg/Desktop/C#/Assignments/webshop/obj/Debug/netcoreapp2.0/webshop.pdb
