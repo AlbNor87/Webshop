@@ -29,12 +29,10 @@ namespace webshop.Controllers
             {
                 try
                 {
-                    var carts = connection.Query<CartItemModel>("SELECT * from carts JOIN products ON carts.productId=products.id WHERE carts.cartId = '@cartId';",
+                    var carts = connection.Query<CartItemModel>("SELECT carts.cartId, sum(carts.quantity) as quantity, carts.productId, products.price, products.brand, products.model, products.image FROM products INNER JOIN carts ON carts.productId = products.id WHERE carts.cartId = @cartId GROUP BY carts.productId;",
                         new { cartId }).ToList();
                     return View(carts);
 
-                    //var carts = connection.Query<CartItemModel>("SELECT * from carts WHERE cartId = @cartId", new { cartId } ).ToList();
-                    //return View(carts);
                 }
                 catch (Exception)
                 {
@@ -43,9 +41,8 @@ namespace webshop.Controllers
 
             }
 
-
-
         }
+
 
         private string GetOrCreateCartId()
         {
@@ -86,29 +83,39 @@ namespace webshop.Controllers
 
             }
 
-            return RedirectToAction("Products");
-    
+
+            return RedirectToAction("Index", "Products");
 
         }
 
-        public IActionResult Get(int id, string cartid)
+        [HttpPost]
+        public ActionResult RemoveFromCart(int id)
         {
+
+            var cartId = GetOrCreateCartId();
 
             using (var connection = new MySqlConnection(this.connectionString))
             {
-                var cartItem= connection.QuerySingleOrDefault<CartItemModel>("SELECT * from Carts JOIN Products ON Carts.productId=products.id;");
-                if (cartItem != null)
-                {
-                    return View(cartItem);
+
+                try
+                {   
+                    
+                    connection.Execute(
+                        "DELETE FROM Carts WHERE carts.cartId = @cartId AND carts.productId = @id;",
+                        new { id, cartId});
                 }
-                else
+                catch (Exception)
                 {
-                    return NotFound();
+                    //return NotFound();
                 }
+
             }
+
+            return RedirectToAction("Index", "Cart");
 
         }
 
+        
 
 
         public CartController(IConfiguration configuration)

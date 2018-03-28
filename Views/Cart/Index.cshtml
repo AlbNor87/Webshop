@@ -1,25 +1,33 @@
 ﻿@model List<webshop.Models.CartItemModel>
 
+
 @{
     ViewData["Title"] = "Cart";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>This is where you can see everything you have put in your cart!</p>
+<p>This is where you can see everything you have put in your product!</p>
 
 <!--<div class="products-container">-->
 
-@foreach(var cart in Model)
+@foreach(var product in Model)
 {
 
-    <p>@(cart.Id)</p>
-    <p>@(cart.ProductId)</p>
-    <p>@(cart.CartId)</p>
-    <p>@(cart.Quantity)</p>
-    <p>@(cart.DateCreated)</p>
-    <p>@(cart.Image)</p>
-
+    <span style="white-space: nowrap">
+    <h3><a class="bold" href="/products/get/@(product.ProductId)">@(product.Brand)
+    <span class="model">@(product.Model)</span>
+    </a></h3>
+    </span>
+    <img class="thumbnail" src="/images/products/@(product.Image)" alt="image of product">
+    <p class="price">Price: $@(product.Price)</p>
+    <p>Quantity: @(product.Quantity)</p>
+    <p>Product id: @(product.ProductId)</p>
+    <form action="/cart/removefromcart/@(product.ProductId)" method="post">
+    <input type="submit" value="Remove Item" />
+    </form>
+    <br/>
+    <br/>
 }
 
 <!--</div>-->
