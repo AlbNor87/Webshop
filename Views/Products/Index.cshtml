@@ -19,7 +19,7 @@ ViewData["Title"] = "Products";
     <img class="thumbnail" src="/images/products/@(product.Image)" alt="image of product">
     <form action="/cart/addtocart/@(product.Id)" method="post">
     <p class="price">Price: $@(product.Price)</p>
-    <input type="submit" value="Add to Cart" />
+    <input class="addButton" type="submit" value="Add to Cart" data-model="@(product.Model)" data-brand="@(product.Brand)" data-price="@(product.Price)" />
     </form>
     <br/>
     <br/>

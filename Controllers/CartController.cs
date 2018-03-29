@@ -115,8 +115,6 @@ namespace webshop.Controllers
 
         }
 
-        
-
 
         public CartController(IConfiguration configuration)
         {

@@ -25,7 +25,14 @@ namespace webshop.Controllers
             using (var connection = new MySqlConnection(this.connectionString))
             {
                 var products = connection.Query<ProductsViewModel>("Select * from Products").ToList();
-                return View(products);
+                if (products != null)
+                {
+                    return View(products);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
 
             //return ;

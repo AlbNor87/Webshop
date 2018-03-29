@@ -1,15 +1,18 @@
-﻿@model List<webshop.Models.CartItemModel>
+﻿@model webshop.Models.CheckoutItemModel
 
 
 @{
-    ViewData["Title"] = "Checkout";
+   ViewData["Title"] = "Checkout";
+   var cartId = Model.Cart[1].CartId;
+
+
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
 <p>This is where you pay when you are done shopping!</p>
 
-@foreach(var product in Model)
+@foreach(var product in Model.Cart)
 {
 
     <div class="product-container">
@@ -28,21 +31,44 @@
     </form>
     <br/>
     <br/>
-
     </div>
-    
 }
 
-<form>
-  <p>First name:</p>
+<p>Total cost: $@(Model.Sum)</p>
+<p>Total cost: $@cartId</p>
+
+
+
+
+@using (Html.BeginForm( "PlaceOrder", "Checkout" ))
+{
+  <input type="hidden" name="cartId" value="@cartId"><br>
+  <input type="hidden" name="sum" value="@Model.Sum"><br>
+
+  <p>First Name:</p>
   <input type="text" name="firstname"><br>
-  <p>Last name:</p>
-  <input type="text" name="lastname">
+    
+  <p>Last Name:</p>
+  <input type="text" name="lastname"><br>
+    
   <p>E-Mail:</p>
-  <input type="text" name="lastname">
+  <input type="text" name="email"><br>
+    
   <p>Street Adress:</p>
-  <input type="text" name="lastname">
+  <input type="text" name="adress"><br>
+    
+  <p>Zip Code:</p>
+  <input type="number" name="zipcode"><br>
+    
   <p>Payment Method:</p>
-  <input type="text" name="lastname">
-   <input type="submit" value="Submit">
-</form>
+  <input type="text" name="payment">
+    
+  <input type="submit" value="Place Order">
+
+}
+
+
+
+  
+
+    

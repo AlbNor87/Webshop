@@ -29,9 +29,16 @@ namespace webshop.Controllers
             {
                 try
                 {
-                    var carts = connection.Query<CartItemModel>("SELECT carts.cartId, sum(carts.quantity) as quantity, carts.productId, products.price, products.brand, products.model, products.image FROM products INNER JOIN carts ON carts.productId = products.id WHERE carts.cartId = @cartId GROUP BY carts.productId;",
-                        new { cartId }).ToList();
-                    return View(carts);
+                    var checkoutItems = connection.Query<CartItemModel>("SELECT carts.cartId, sum(carts.quantity) as quantity, carts.productId, products.price, products.brand, products.model, products.image FROM products INNER JOIN carts ON carts.productId = products.id WHERE carts.cartId = @cartId GROUP BY carts.productId;",
+                    new { cartId }).ToList();
+
+                    var sum = checkoutItems.Select(c => c.Price * c.Quantity).Sum();
+
+                    var checkoutItem = new CheckoutItemModel();
+                    checkoutItem.Cart = checkoutItems;
+                    checkoutItem.Sum = sum;
+
+                    return View(checkoutItem);
 
                 }
                 catch (Exception)
@@ -40,6 +47,52 @@ namespace webshop.Controllers
                 }
 
             }
+
+        }
+
+        [HttpPost]
+        public ActionResult PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, string cartId, int sum)
+        {
+
+            using (var connection = new MySqlConnection(this.connectionString))
+            {
+
+                try
+                {
+                    
+                    connection.Execute(
+                        "INSERT INTO Orders(firstName, lastName, email, adress, zipCode, paymentMethod, sum, cartId) VALUES(@firstname, @lastname, @email, @adress, @zipcode, @payment, @sum, @cartId)",
+                        new { firstname, lastname, email, adress, zipcode, payment, sum, cartId });
+
+
+                    var orderInfo = connection.Query<OrderInfoModel>("Select * from Orders where orders.cartId = @cartId;", 
+                                                                 new { cartId }).ToList();
+
+
+                    var checkoutItems = connection.Query<CartItemModel>(
+                        "SELECT carts.cartId, sum(carts.quantity) as quantity, carts.productId, products.price, products.brand, products.model, products.image FROM products INNER JOIN carts ON carts.productId = products.id WHERE carts.cartId = @cartId GROUP BY carts.productId;",
+                        new { cartId }).ToList();
+
+                    var orderId = orderInfo[0].Id;
+
+                    foreach(var item in checkoutItems)
+                    {
+
+                        connection.Execute(
+                            "INSERT INTO OrderRows(orderId, productId, brand, model, quantity, price) VALUES(@orderId, @productId, @brand, @model, @quantity, @price)",
+                            new {orderId, item.ProductId, item.Brand, item.Model, item.Quantity, item.Price});
+                    }
+
+                }
+                catch (Exception)
+                {
+                    return NotFound();
+                }
+
+            }
+
+
+            return RedirectToAction("Index", "Products");
 
         }
 
