@@ -1,4 +1,13 @@
-﻿body {
+﻿:root p {
+    color: white;
+}
+
+p {
+    color: white;
+    font-size: 16px;
+}
+
+body {
     background-color: black;
     padding-top: 50px;
     padding-bottom: 20px;
@@ -75,4 +84,15 @@ a:hover {
     .carousel-caption {
         display: none
     }
+}
+
+.small {
+    width: 75px;
+    height: 75px;    
+}
+
+.product-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

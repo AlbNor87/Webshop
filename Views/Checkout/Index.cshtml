@@ -1,7 +1,48 @@
-﻿@{
+﻿@model List<webshop.Models.CartItemModel>
+
+
+@{
     ViewData["Title"] = "Checkout";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
 <p>This is where you pay when you are done shopping!</p>
+
+@foreach(var product in Model)
+{
+
+    <div class="product-container">
+
+    <span style="white-space: nowrap">
+    </span>
+    <img class="thumbnail small" src="/images/products/@(product.Image)" alt="image of product">
+    <h3><a class="bold" href="/products/get/@(product.ProductId)">@(product.Brand)
+    <span class="model">@(product.Model)</span>
+    </a></h3>
+    <p class="price">Price: $@(product.Price)</p>
+    <p>Quantity: @(product.Quantity)</p>
+    <p>Product id: @(product.ProductId)</p>
+    <form action="/cart/removefromcart/@(product.ProductId)" method="post">
+    <input type="submit" value="Remove Item" />
+    </form>
+    <br/>
+    <br/>
+
+    </div>
+    
+}
+
+<form>
+  <p>First name:</p>
+  <input type="text" name="firstname"><br>
+  <p>Last name:</p>
+  <input type="text" name="lastname">
+  <p>E-Mail:</p>
+  <input type="text" name="lastname">
+  <p>Street Adress:</p>
+  <input type="text" name="lastname">
+  <p>Payment Method:</p>
+  <input type="text" name="lastname">
+   <input type="submit" value="Submit">
+</form>
