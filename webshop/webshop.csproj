@@ -18,5 +18,12 @@
     <Folder Include="Views\Products\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Checkout\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Services\" />
+    <Folder Include="Repositories\Implementations\" />
+    <Folder Include="Services\Implementations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Services\Implementations\CartServices.cs" />
   </ItemGroup>
 </Project>
