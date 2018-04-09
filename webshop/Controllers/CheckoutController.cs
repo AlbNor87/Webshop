@@ -8,8 +8,6 @@ using MySql.Data.MySqlClient;
 using Dapper;
 using webshop.Models;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace webshop.Controllers
 {
     public class CheckoutController : Controller
@@ -19,7 +17,6 @@ namespace webshop.Controllers
 
         private readonly string connectionString;
 
-        // GET: /<controller>/
         public IActionResult Index()
         {
 
@@ -91,6 +88,7 @@ namespace webshop.Controllers
 
             }
 
+            this.Response.Cookies.Delete("CartId");
 
             return RedirectToAction("Index", "Products");
 

@@ -12,7 +12,6 @@ namespace webshop.Services.Implementations
     {
         private readonly ICartRepository cartRepository;
 
-
         public CartService(ICartRepository cartRepository)
         {
             this.cartRepository = cartRepository;
@@ -29,6 +28,7 @@ namespace webshop.Services.Implementations
         {
             this.cartRepository.AddToCart(id, cartId, quantity);
         }
+
 
         public void RemoveFromCart(int id, string cartId)
         {

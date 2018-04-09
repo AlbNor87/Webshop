@@ -17,7 +17,6 @@ namespace webshop.Repositories.Implementations
             this.connectionString = connectionString;
         }
 
-
         public List<CartItemModel> Get(string cartId)
         {
             
@@ -29,7 +28,7 @@ namespace webshop.Repositories.Implementations
 
         }
 
-        public bool AddToCart(int id, string cartId, int quantity)
+        public void AddToCart(int id, string cartId, int quantity)
         {
             
             using (var connection = new MySqlConnection(this.connectionString))
@@ -41,7 +40,7 @@ namespace webshop.Repositories.Implementations
 
         }
 
-        public bool RemoveFromCart(int id, string cartId)
+        public void RemoveFromCart(int id, string cartId)
         {
 
             using (var connection = new MySqlConnection(this.connectionString))

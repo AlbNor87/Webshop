@@ -1,9 +1,23 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webshop", "webshop\webshop.csproj", "{FAA6933A-8421-4433-8DF1-F0BD253973DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webshop.unittests", "webshop.unittests\webshop.unittests.csproj", "{E14C6AE8-44DE-4BA3-99C9-B1EAA5B9B6EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAA6933A-8421-4433-8DF1-F0BD253973DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA6933A-8421-4433-8DF1-F0BD253973DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA6933A-8421-4433-8DF1-F0BD253973DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA6933A-8421-4433-8DF1-F0BD253973DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E14C6AE8-44DE-4BA3-99C9-B1EAA5B9B6EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E14C6AE8-44DE-4BA3-99C9-B1EAA5B9B6EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E14C6AE8-44DE-4BA3-99C9-B1EAA5B9B6EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E14C6AE8-44DE-4BA3-99C9-B1EAA5B9B6EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -10,11 +10,6 @@ using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using Dapper;
 
-
-
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace webshop.Controllers
 {
     public class ProductsController : Controller
@@ -22,11 +17,12 @@ namespace webshop.Controllers
 
         private readonly ProductService productService;
 
+
         public ProductsController(IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("ConnectionString");
-            this.productService = new ProductService(
-                new ProductRepository(connectionString));
+
+            this.productService = new ProductService(new ProductRepository(connectionString));
         }
 
 
@@ -34,6 +30,7 @@ namespace webshop.Controllers
         {
 
             var products = this.productService.GetAll();
+
             return View(products);
 
         }

@@ -6,7 +6,7 @@ using webshop.Models;
 
 namespace webshop.Repositories.Implementations
 {
-    public interface ICartRepository
+    public interface ICheckoutRepository
     {
         List<CartItemModel> Get(string cartId);
 

@@ -19,7 +19,6 @@ namespace webshop.Services.Implementations
 
         public List<ProductsViewModel> GetAll()
         {
-
             return this.productRepository.GetAll();
         }      
     }
