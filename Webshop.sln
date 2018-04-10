@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webshop", "webshop\webshop.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webshop.unittests", "webshop.unittests\webshop.unittests.csproj", "{E14C6AE8-44DE-4BA3-99C9-B1EAA5B9B6EE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1BBDD82E-875B-4D14-9103-63CFE44928EE}"
+	ProjectSection(SolutionItems) = preProject
+		Webshop.sln = Webshop.sln
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

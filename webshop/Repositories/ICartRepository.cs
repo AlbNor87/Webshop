@@ -10,7 +10,7 @@ namespace webshop.Repositories.Implementations
     {
         List<CartItemModel> Get(string cartId);
 
-        void AddToCart(int id, string cartId, int quantity);
+        bool AddToCart(int id, string cartId, int quantity);
 
         void RemoveFromCart(int id, string cartId);
     }

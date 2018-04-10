@@ -28,16 +28,36 @@ namespace webshop.Repositories.Implementations
 
         }
 
-        public void AddToCart(int id, string cartId, int quantity)
+        public bool AddToCart(int id, string cartId, int quantity)
         {
-            
-            using (var connection = new MySqlConnection(this.connectionString))
+            try
             {
+                using (var connection = new MySqlConnection(this.connectionString))
+                {
+
+                    var itemExists = connection.QuerySingleOrDefault("SELECT * FROM carts WHERE productId = @id AND cartId = @cartId;", new { id, cartId });
+
+                    if (itemExists != null)
+                    {
+                        connection.Execute(
+                            "UPDATE carts SET quantity = quantity + @quantity WHERE productId = @id AND cartId = @cartId;",
+                            new { id, cartId, quantity });
+
+                        return true;
+                    }
+
                     connection.Execute(
                         "INSERT INTO Carts (productId, cartId, quantity, dateCreated) VALUES(@id, @cartId, @quantity, NOW())",
                         new { id, cartId, quantity });
-            }
 
+                    return true;
+                }
+
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public void RemoveFromCart(int id, string cartId)

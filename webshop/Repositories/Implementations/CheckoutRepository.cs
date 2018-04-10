@@ -84,9 +84,9 @@ namespace webshop.Repositories.Implementations
             using (var connection = new MySqlConnection(this.connectionString))
             {
 
-                    connection.Execute(
-                        "DELETE FROM Carts WHERE carts.cartId = @cartId AND carts.productId = @id;",
-                        new { id, cartId });
+                connection.Execute(
+                    "DELETE FROM Carts WHERE carts.cartId = @cartId AND carts.productId = @id;",
+                    new { id, cartId });
             }
         }
     }

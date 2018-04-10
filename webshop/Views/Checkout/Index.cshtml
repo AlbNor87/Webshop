@@ -12,7 +12,6 @@
 
 @foreach(var product in Model.Cart)
 {
-
     <div class="product-container">
 
     <span style="white-space: nowrap">
@@ -33,7 +32,7 @@
 }
 
 <p>Total cost: $@(Model.Sum)</p>
-<p>Total cost: $@cartId</p>
+<p>CartId: $@cartId</p>
 
 @using (Html.BeginForm( "PlaceOrder", "Checkout" ))
 {
@@ -41,24 +40,24 @@
   <input type="hidden" name="sum" value="@Model.Sum">
 
   <p>First Name:</p>
-  <input type="text" name="firstname"><br>
+  <input type="text" name="firstname" required><br>
     
   <p>Last Name:</p>
-  <input type="text" name="lastname"><br>
+  <input type="text" name="lastname" required><br>
     
   <p>E-Mail:</p>
-  <input type="text" name="email"><br>
+  <input type="text" name="email" required><br>
     
   <p>Street Adress:</p>
-  <input type="text" name="adress"><br>
+  <input type="text" name="adress" required><br>
     
   <p>Zip Code:</p>
-  <input type="number" name="zipcode"><br>
+  <input type="number" name="zipcode" required><br>
     
   <p>Payment Method:</p>
-  <input type="text" name="payment">
+  <input type="text" name="payment" required>
     
-  <input type="submit" value="Place Order">
+  <input type="submit" value="Place Order" class="placeOrder">
 
 }
 

@@ -6,11 +6,9 @@ ViewData["Title"] = "Products";
 
 }
 
-<!--<div class="products-container">-->
-
 @foreach(var product in Model)
 {
-    <!--<div class="product">-->
+    
     <span style="white-space: nowrap">
     <h3><a class="bold" href="/products/get/@(product.Id)">@(product.Brand)
     <span class="model">@(product.Model)</span>
@@ -19,11 +17,13 @@ ViewData["Title"] = "Products";
     <img class="thumbnail" src="/images/products/@(product.Image)" alt="image of product">
     <form action="/cart/addtocart/@(product.Id)" method="post">
     <p class="price">Price: $@(product.Price)</p>
+    <div><p class="price">Quantity:</p>
+    <input type="number" name="quantity" step="1" style="width: 50px; white-space:nowrap;" value="1"><br/>
+    </div>   
     <input class="addButton" type="submit" value="Add to Cart" data-model="@(product.Model)" data-brand="@(product.Brand)" data-price="@(product.Price)" />
     </form>
     <br/>
     <br/>
-   <!-- </div>-->
+
 }
 
-<!--</div>-->

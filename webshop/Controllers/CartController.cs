@@ -10,8 +10,6 @@ using webshop.Models;
 using webshop.Repositories.Implementations;
 using webshop.Services.Implementations;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace webshop.Controllers
 {
     public class CartController : Controller
@@ -57,11 +55,10 @@ namespace webshop.Controllers
 
 
         [HttpPost]
-        public ActionResult AddToCart(int id)
+        public ActionResult AddToCart(int id, int quantity)
         {
 
             var cartId = GetOrCreateCartId();
-            var quantity = 1;
 
             this.cartService.AddToCart(id, cartId, quantity);
 
