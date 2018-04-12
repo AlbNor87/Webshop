@@ -10,9 +10,11 @@ namespace webshop.Repositories.Implementations
     {
         List<CartItemModel> Get(string cartId);
 
-        bool PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, string cartId, int sum);
+        (int OrderId, bool Success) PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, string cartId, int sum);
 
         void RemoveFromCart(int id, string cartId);
+
+        ReceiptInfoModel GetOrderInfo(int orderId);
     }
 }
 

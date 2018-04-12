@@ -1,0 +1,28 @@
+﻿@model webshop.Models.ReceiptInfoModel
+
+@{
+}
+
+
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>This is where you pay when you are done shopping!</p>
+
+@foreach(var product in Model.OrderRows)
+{
+    <div class="product-container">
+    <p>@(product.Quantity)</p>
+    <p>@(product.ProductId)</p>
+    <p>@(product.Model)</p>
+    <p>@(product.Price)</p>
+    <p>@(product.Brand)</p>
+    </div>
+}
+
+<p>@(Model.OrderInfo.FirstName)</p>
+
+
+  
+
+    

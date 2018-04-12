@@ -26,4 +26,7 @@
   <ItemGroup>
     <Compile Remove="Services\Implementations\CartServices.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Receipt\Receipt.cshtml" />
+  </ItemGroup>
 </Project>

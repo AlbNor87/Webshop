@@ -29,25 +29,41 @@ namespace webshop.Controllers
 
         public IActionResult Index()
         {
-
+            
             var cartId = GetOrCreateCartId();
 
             var cartItems = this.checkoutService.Get(cartId);
+
+            if (this.Request.QueryString.Value.Contains("error") && cartItems != null)
+            {
+                cartItems.Message = "Something went wrong. Your order did not go through. Sorry!";
+            }
 
             return View(cartItems);
         }
 
         [HttpPost]
-        public ActionResult PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, string cartId, int sum)
+        public IActionResult PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, string cartId, int sum)
         {
 
-            this.checkoutService.PlaceOrder(firstname, lastname, email, adress, zipcode, payment, cartId, sum);
+            var orderResult = this.checkoutService.PlaceOrder(firstname, lastname, email, adress, zipcode, payment, cartId, sum);
+
+            if(!orderResult.Success)
+            {
+                return RedirectToAction("Index", new { error = true });
+            }
 
             this.Response.Cookies.Delete("CartId");
-
-            return RedirectToAction("Index", "Products");
-
+            return RedirectToAction("Receipt", new { orderResult.OrderId });
         }
+
+        public IActionResult Receipt(int orderId)
+        {
+            var receipt = this.checkoutService.GetOrderInfo(orderId);
+
+            return View(receipt);
+        }
+
 
         private string GetOrCreateCartId()
         {
@@ -61,7 +77,6 @@ namespace webshop.Controllers
             this.Response.Cookies.Append("CartId", cartId);
 
             return cartId;
-
         }
     }
 }

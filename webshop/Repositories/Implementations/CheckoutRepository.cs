@@ -35,7 +35,7 @@ namespace webshop.Repositories.Implementations
         }
 
 
-        public bool PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, string cartId, int sum)
+        public (int OrderId, bool Success) PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, string cartId, int sum)
         {
 
             try
@@ -44,20 +44,13 @@ namespace webshop.Repositories.Implementations
                 using (var connection = new MySqlConnection(this.connectionString))
                 {
 
-                    connection.Execute(
-                        "INSERT INTO Orders(firstName, lastName, email, adress, zipCode, paymentMethod, sum, cartId) VALUES(@firstname, @lastname, @email, @adress, @zipcode, @payment, @sum, @cartId)",
-                        new { firstname, lastname, email, adress, zipcode, payment, sum, cartId });
-
-
-                    var orderInfo = connection.Query<OrderInfoModel>("Select * from Orders where orders.cartId = @cartId;",
-                                                                 new { cartId }).ToList();
+                    var orderId = connection.QuerySingleOrDefault<int>("INSERT INTO Orders(firstName, lastName, email, adress, zipCode, paymentMethod, sum, cartId) VALUES(@firstname, @lastname, @email, @adress, @zipcode, @payment, @sum, @cartId); SELECT last_insert_id();",
+                        new { firstname, lastname, email, adress, zipcode, payment, sum, cartId }); 
 
 
                     var checkoutItems = connection.Query<CartItemModel>(
                         "SELECT carts.cartId, sum(carts.quantity) as quantity, carts.productId, products.price, products.brand, products.model, products.image FROM products INNER JOIN carts ON carts.productId = products.id WHERE carts.cartId = @cartId GROUP BY carts.productId;",
                         new { cartId }).ToList();
-
-                    var orderId = orderInfo[0].Id;
 
                     foreach (var item in checkoutItems)
                     {
@@ -66,16 +59,35 @@ namespace webshop.Repositories.Implementations
                             "INSERT INTO OrderRows(orderId, productId, brand, model, quantity, price) VALUES(@orderId, @productId, @brand, @model, @quantity, @price)",
                             new { orderId, item.ProductId, item.Brand, item.Model, item.Quantity, item.Price });
                     }
+
+                    return (orderId, true);
                 }
 
-                return true;
             }
             catch (Exception)
             {
-                return false;
+                return (-1, false);
             }
         }
 
+
+        public ReceiptInfoModel GetOrderInfo(int orderId)
+        {
+            
+            using (var connection = new MySqlConnection(this.connectionString))
+            {
+                var orderInfo = connection.QuerySingleOrDefault<OrderInfoModel>("SELECT * FROM Orders WHERE id = @orderId;", new { orderId });
+
+                var orderRows = connection.Query<OrderRowsModel>("SELECT * FROM OrderRows WHERE orderid = @orderId;",new { orderId }).ToList();
+
+                var receiptInfo = new ReceiptInfoModel();
+                receiptInfo.OrderInfo = orderInfo;
+                receiptInfo.OrderRows = orderRows;
+
+                return receiptInfo;
+            }
+          
+        }
 
 
         public void RemoveFromCart(int id, string cartId)

@@ -28,6 +28,11 @@ namespace webshop.Services.Implementations
 
             var checkoutItems = this.checkoutRepository.Get(cartId);
 
+            if(!checkoutItems.Any())
+            {
+                return null;
+            }
+
             var sum = checkoutItems.Select(c => c.Price * c.Quantity).Sum();
 
             var checkoutItem = new CheckoutItemModel();
@@ -37,10 +42,16 @@ namespace webshop.Services.Implementations
             return checkoutItem;
         }
 
-        public void PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, string cartId, int sum)
+        public (int OrderId, bool Success) PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, string cartId, int sum)
         {
-            this.checkoutRepository.PlaceOrder(firstname, lastname, email, adress, zipcode, payment, cartId, sum);
+            return this.checkoutRepository.PlaceOrder(firstname, lastname, email, adress, zipcode, payment, cartId, sum);
         }
 
-    }      
+        public ReceiptInfoModel GetOrderInfo(int orderId)
+        {
+            
+            return this.checkoutRepository.GetOrderInfo(orderId);
+
+        }
+    }
 }
