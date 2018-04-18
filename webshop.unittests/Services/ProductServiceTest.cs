@@ -21,7 +21,7 @@ namespace webshop.unittests.Services
         }
 
         [Test]
-        public void GetAll()
+        public void GetAll_ReturnsExpectedProducts()
         {
             //Arrange
 

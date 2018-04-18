@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
-using MySql.Data.MySqlClient;
-using Dapper;
-using webshop.Models;
 using webshop.Repositories.Implementations;
 using webshop.Services.Implementations;
 
@@ -17,7 +11,7 @@ namespace webshop.Controllers
 
         public string CartId { get; set; }
 
-        private readonly CheckoutService checkoutService;
+        public readonly CheckoutService checkoutService;
 
         public CheckoutController(IConfiguration configuration)
         {

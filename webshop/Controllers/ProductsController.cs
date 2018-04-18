@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using webshop.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using webshop.Services.Implementations;
 using webshop.Repositories.Implementations;
 using Microsoft.Extensions.Configuration;
-using MySql.Data.MySqlClient;
-using Dapper;
 
 namespace webshop.Controllers
 {
@@ -27,7 +20,7 @@ namespace webshop.Controllers
 
 
         public IActionResult Index()
-        {
+        { 
 
             var products = this.productService.GetAll();
 
