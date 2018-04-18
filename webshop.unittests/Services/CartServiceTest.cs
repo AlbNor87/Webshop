@@ -4,7 +4,6 @@ using webshop.Repositories.Implementations;
 using webshop.Models;
 using FakeItEasy;
 using System.Collections.Generic;
-using System;
 
 namespace webshop.unittests.Services
 {

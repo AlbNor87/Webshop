@@ -43,8 +43,9 @@ namespace webshop.Controllers
         }
 
         [HttpPost]
-        public IActionResult PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, string cartId, int sum)
+        public IActionResult PlaceOrder(string firstname, string lastname, string email, string adress, int zipcode, string payment, int sum)
         {
+            var cartId = GetOrCreateCartId();
 
             var orderResult = this.checkoutService.PlaceOrder(firstname, lastname, email, adress, zipcode, payment, cartId, sum);
 

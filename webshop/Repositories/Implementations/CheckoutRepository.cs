@@ -44,8 +44,8 @@ namespace webshop.Repositories.Implementations
                 using (var connection = new MySqlConnection(this.connectionString))
                 {
 
-                    var orderId = connection.QuerySingleOrDefault<int>("INSERT INTO Orders(firstName, lastName, email, adress, zipCode, paymentMethod, sum, cartId) VALUES(@firstname, @lastname, @email, @adress, @zipcode, @payment, @sum, @cartId); SELECT last_insert_id();",
-                        new { firstname, lastname, email, adress, zipcode, payment, sum, cartId }); 
+                    var orderId = connection.QuerySingleOrDefault<int>("INSERT INTO Orders(firstName, lastName, email, adress, zipCode, paymentMethod, sum) VALUES(@firstname, @lastname, @email, @adress, @zipcode, @payment, @sum); SELECT last_insert_id();",
+                        new { firstname, lastname, email, adress, zipcode, payment, sum}); 
 
 
                     var checkoutItems = connection.Query<CartItemModel>(
