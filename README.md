@@ -7,8 +7,11 @@
 ## Assignment:
 - Create a webshop with C#
 
+## Info
+- The database (webshop_DB.sql) is included in this repo!
+
 ## Created by:
-_Albert Norberg (Web Developer)_
+_Albert Norberg_
 
 ### Tested by:
-_Linn Tunberg (Web Developer)_
+_Linn Tunberg_
