@@ -1,10 +1,11 @@
-﻿// Write your JavaScript code.
+﻿document.querySelectorAll('.addButton').forEach(function(event) {
+    
+    event.addEventListener("click", addToCart);
 
-document.querySelector(".placeOrder").addEventListener("click", displayOrder);
+  });
 
-function displayOrder(){
+function addToCart(){
 
-    // alert("Hello! I am an alert box!!");
-
+    alert("The product was added to your cart!");
 
 }

@@ -17,31 +17,46 @@
     <h2>@ViewData["Title"]</h2>
     <h3>@ViewData["Message"]</h3>
 
-    <p>This is where you pay when you are done shopping!</p>
+    <h4>This is what your cart is currently containing. Are you ready to checkout?</h4>
 
     foreach(var product in Model.Cart)
     {
         <div class="product-container">
 
+        <div class="box">
         <span style="white-space: nowrap">
         </span>
         <img class="thumbnail small" src="/images/products/@(product.Image)" alt="image of product">
-        <h3><a class="bold" href="/products/get/@(product.ProductId)">@(product.Brand)
+        </div>
+
+        <div class="box">
+        <h3><a class="bold" href="/products/get/@(product.ProductId)">@(product.Brand) <br>
         <span class="model">@(product.Model)</span>
         </a></h3>
+        </div>
+
+        <div class="box">
         <p class="price">Price: $@(product.Price)</p>
+        </div>
+    
+        <div class="box">
         <p>Quantity: @(product.Quantity)</p>
+        </div>
+
+        <div class="box">
         <p>Product id: @(product.ProductId)</p>
+        </div>
+
+        <div class="box">
         <form action="/cart/removefromcart/@(product.ProductId)" method="post">
         <input type="submit" value="Remove Item" />
         </form>
-        <br/>
-        <br/>
+        </div>
+    
         </div>
     }
 
-    <p>Total cost: $@(Model.Sum)</p>
-    <p>CartId: $@cartId</p>
+    <h3>Total cost: $@(Model.Sum)</h3>
 
     using (Html.BeginForm( "PlaceOrder", "Checkout" ))
     {
@@ -72,7 +87,9 @@
 }
 else
 {
-    <p>There is nothing in your cart.</p>
+    <h3>You have not put anything in your cart yet.</h3>
+
+   <h4> <a class="bold" href="/products">Proceed to the products page and find some cool stuff to put in here!</a> </h4>
 }
   
 

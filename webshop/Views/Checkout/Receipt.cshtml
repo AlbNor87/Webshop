@@ -7,22 +7,57 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>This is where you pay when you are done shopping!</p>
+<h2>Thank you for shopping at SNEAKERSTORE.COM!</h2>
+<h3>Below you will find all the details of your order:</h3>
+
+<div class="column-title-container">
+    <h3>Product</h3>
+    <h3>Model</h3>
+    <h3>Price</h3>
+    <h3>Quantity</h3>
+</div>
 
 @foreach(var product in Model.OrderRows)
 {
     <div class="product-container">
-    <p>@(product.Quantity)</p>
-    <p>@(product.ProductId)</p>
-    <p>@(product.Model)</p>
-    <p>@(product.Price)</p>
-    <p>@(product.Brand)</p>
+
+        <div class="box">
+        <p>@(product.Brand)</p>
+        </div>
+    
+        <div class="box">
+        <p>@(product.Model)</p>
+        </div>
+    
+        <div class="box">
+        <p>@(product.Price)</p>
+        </div>
+    
+        <div class="box">
+        <p>@(product.Quantity)</p>
+        </div>
+    
     </div>
 }
 
-<p>@(Model.OrderInfo.FirstName)</p>
+<div class="column-title-container">
+    <h3>Total cost: $@(Model.OrderInfo.Sum)</h3>
+</div>
 
+<div class="order-info-container">
+    <h4><span class="bold" >Firstname: </span>@(Model.OrderInfo.FirstName)</h4>
+    <br>
+    <h4>Lastname: @(Model.OrderInfo.LastName)</h4>
+    <br>
+    <h4>Email: @(Model.OrderInfo.Email)</h4>
+    <br>
+    <h4>Street address: @(Model.OrderInfo.Adress)</h4>
+    <br>
+    <h4>Zipcode: @(Model.OrderInfo.ZipCode)</h4>
+    <br>
+    <h4>Payment method: @(Model.OrderInfo.PaymentMethod)</h4>
+</div>
 
-  
-
-    
+<div class="continue">
+    <a class="bold" href="/products"><h5>Continue shopping!</h5></a>
+</div>

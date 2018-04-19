@@ -14,7 +14,7 @@ body {
     color: #555;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     color: white;
 }
 
@@ -71,13 +71,6 @@ a:hover {
    font-weight: bold;
 }
 
-.products-container {
-    background-color: darkgrey;
-    display:flex;
-    width: 80vw;
-    height: 90vh;
-}
-
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
@@ -92,7 +85,67 @@ a:hover {
 }
 
 .product-container {
+    padding: 2%;
+    background-color: #141414;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.product-container p {
+    margin: 0;
+}
+
+.column-title-container {
+    padding: 2%;
+    background-color: #1e1e1e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.column-title-container h3 {
+    margin: 0;
+}
+
+.order-info-container {
+    padding: 2%;
+    background-color: #141414
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.order-info-container h4 {
+    color: white;
+}
+
+.continue {
+    display: flex;
+    justify-content:center;
+}
+
+h5 {
+
+    font-size: 2em;
+   
+}
+
+.box {
+    display: flex;
+    align-items: flex-start;
+    width: 15%;
+   
+}
+
+.box-small {
+    display: flex;
+    align-items: flex-start;
+    width: 10%;
+
+}
+
+.box h3 {
+    margin: 0;
 }

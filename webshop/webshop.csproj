@@ -28,5 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Receipt\Receipt.cshtml" />
+    <Content Remove="Views\Products\Create.cshtml" />
   </ItemGroup>
 </Project>

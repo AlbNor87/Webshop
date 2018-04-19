@@ -8,7 +8,7 @@ ViewData["Title"] = "Products";
 
 @foreach(var product in Model)
 {
-    
+
     <span style="white-space: nowrap">
     <h3><a class="bold" href="/products/get/@(product.Id)">@(product.Brand)
     <span class="model">@(product.Model)</span>
@@ -20,10 +20,12 @@ ViewData["Title"] = "Products";
     <div><p class="price">Quantity:</p>
     <input type="number" name="quantity" step="1" style="width: 50px; white-space:nowrap;" value="1"><br/>
     </div>   
-    <input class="addButton" type="submit" value="Add to Cart" data-model="@(product.Model)" data-brand="@(product.Brand)" data-price="@(product.Price)" />
+    <input id="myBtn" class="addButton" type="submit" value="Add to Cart" data-model="@(product.Model)" data-brand="@(product.Brand)" data-price="@(product.Price)"/>
     </form>
     <br/>
     <br/>
 
 }
+
+
 

@@ -10,7 +10,6 @@ namespace webshop.Controllers
 
         private readonly ProductService productService;
 
-
         public ProductsController(IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("ConnectionString");
